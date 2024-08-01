@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACE Handyman Services</title>
+    <link rel="icon" href="/Users/jordprc/Dev/ace-handyman-services/favicon_io/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #27397e; /* Text color */
+            background-color: #fffcec; /* Background color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #fffcec;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 300px;
+        }
+        .content {
+            padding: 20px;
+            max-width: 1200px; /* Set a maximum width for the content */
+            width: 100%; /* Ensure it scales on smaller screens */
+        }
+
+        .services, .carousel-container, .contact, .company-overview {
+            margin: 20px auto; /* Center content with margin */
+        }
+        h1, h2, h3 {
+            color: #27397e; /* Heading colors */
+        }
+        h1 {
+            font-size: 4rem; /* Adjust as needed */
+        }
+        h2 {
+            font-size: 3.5rem; /* Adjust as needed */
+        }
+        h3 {
+            font-size: 2rem; /* Adjust as needed */
+        }
+        p, span {
+            font-size: 1.5rem; /* Adjust as needed */
+        }
+        .service-text {
+            padding-left: 16px;
+            text-align: center;
+        }
+        .service img {
+            width: 40px; /* Icon size */
+            height: 40px;
+            margin-right: 15px;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel img {
+            width: 200px; /* Fixed width */
+            height: 200px; /* Fixed height for square images */
+            object-fit: cover;
+            margin-right: 10px; /* Spacing between images */
+        }
+        .carousel img:last-child {
+            margin-right: 0; /* Remove margin from the last image */
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .carousel-nav button:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .contact, .company-overview {
+            margin: 20px 0;
+        }
+        .contact {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .contact-content {
+            flex: 1;
+        }
+        .contact-image {
+            margin-left: 5%;
+            flex-basis: 40%; /* Image container takes up 45% of the width */
+            text-align: right; /* Aligns the image to the right */
+            overflow: hidden; /* Hide any overflowed parts of the image */
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px; /* Rounds the edges of the image */
+        }
+        .contact a {
+            background-color: #27397e;
+            color: #fffcec;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 3px solid #27397e;
+        }
+        .contact a:hover {
+            color: #27397e;
+            background-color: #fffcec;
+            border-color: #27397e
+        }
+        .company-overview {
+            display: flex;
+            align-items: center;
+        }
+
+        .company-image {
+            margin-right: 5%;
+            flex-basis: 40%; /* Image container takes up 45% of the width */
+        }
+
+        .company-image img {
+            max-width: 100%;
+            border-radius: 10px; /* Rounds the edges of the image */
+        }
+
+        .company-text {
+            text-align: right;
+            flex: 1; /* Text container takes up the remaining space */
+        }
+
+        .services-carousel {
+            width: 100%;
+            margin: auto;
+            background-color: #27397e;
+            color: #fffcec;
+        }
+
+        .swiper-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Adjust the height as needed */
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center; /* Center-align the content horizontally */
+            align-items: center; /* Center-align the content vertically */
+        }
+
+        .service-content {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center-align items vertically */
+            gap: 20px; /* Space between image and text */
+        }
+
+        .service-icon {
+            height: 20%; /* Adjust as needed */
+            width: 15%;  /* Adjust as needed */
+        }
+
+        .service-text {
+            /* Add any additional styling for the text here */
+        }
+
+        .service-text h3 {
+            color: #fffcec;
+            margin: 0;
+            display: inline-block; /* or block if you want to ensure it always takes a new line */
+        }
+
+        .swiper-pagination-bullets {
+            bottom: 10px;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #fffcec;
+        }
+        footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fffcec;
+            color: #27397e; /* Footer text color */
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between; /* Space between logo and contact */
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            max-width: 150px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        .footer-contact {
+            margin: 20px 0;
+            text-align: left; /* Left-align the contact text */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align items to the right */
+        }
+
+        .footer-contact p,
+        .footer-contact ul {
+            align-self: flex-start; /* Align text to the left within the right-aligned container */
+        }
+
+        .footer-contact p {
+            margin: 5px 0;
+        }
+
+        .footer-contact ul {
+            padding-left: 0; /* Remove default padding */
+            list-style: none; /* Remove default list styling */
+            margin: 0; /* Remove default margin */
+        }
+
+        .footer-contact ul li {
+            margin-bottom: 10px; /* Add space between list items */
+        }
+
+        .footer-contact a {
+            color: #27397e;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-social img {
+            max-width: 30px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        .footer-social span {
+            margin-left: 10px;
+        }
+
+        .footer-copyright {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .footer-contact p {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/fulllogo_transparent_nobuffer.png" alt="ACE Handyman Services' logo" class="logo">
+</header>
+
+<div class="content">
+    <div class="contact">
+        <div class="contact-content">
+            <h1>Quality Craftsmanship, Guaranteed</h1>
+            <p>Contact us for your free quote.</p>
+            <br/>
+            <p><a href="tel:07462559149">Call Now</a></p>
+        </div>
+        <div class="contact-image">
+            <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/drill.jpeg" alt="Drill">
+        </div>
+    </div>
+
+    <div class="services-carousel">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/hammer.png" alt="Service Icon" class="service-icon"/>
+                        <div class="service-text">
+                            <h3>General Repairs</h3>
+                            <p>Fixing a wide range of other small maintenance tasks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/saw.png" alt="Service Icon" class="service-icon"/>
+                        <div class="service-text">
+                            <h3>Carpentry</h3>
+                            <p>Handling various carpentry projects or tasks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/wrench.png" alt="Service Icon" class="service-icon"/>
+                        <div class="service-text">
+                            <h3>Plumbing</h3>
+                            <p>Offering basic plumbing repair and installation tasks.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Swiper Slide for New Services -->
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/paint.png" alt="Service Icon" class="service-icon"/>
+                        <div class="service-text">
+                        <h3>Interior & Exterior Painting</h3>
+                        <p>Transform your space with our professional painting services, both inside and out.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/chainsaw.png" alt="Grass & Tree Cutting" class="service-icon">
+                        <div class="service-text">
+                        <h3>Grass & Tree Cutting</h3>
+                        <p>Keep your garden looking its best with our expert grass and tree cutting services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/rake.png" alt="General Landscaping" class="service-icon">
+                        <div class="service-text">
+                        <h3>General Landscaping</h3>
+                        <p>Enhance your garden with our comprehensive landscaping services tailored to your needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/bin.png" alt="Garden Removals" class="service-icon">
+                        <div class="service-text">
+                        <h3>Garden Removals</h3>
+                        <p>Efficient garden removals to clear out unwanted plants and debris.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/pressure-washer.png" alt="Jet Washing" class="service-icon">
+                        <div class="service-text">
+                        <h3>Jet Washing</h3>
+                        <p>Revitalise your surfaces with our high-pressure jet washing services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="service-content">
+                        <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/more.png" alt="And More" class="service-icon">
+                        <div class="service-text">
+                        <h3>And More</h3>
+                        <p>Explore additional services we offer to meet all your maintenance needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more slides as needed -->
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="company-overview">
+        <div class="company-image">
+            <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/tools.jpg" alt="Tools">
+        </div>
+        <div class="company-text">
+            <h2>Company Overview</h2>
+            <p>Welcome to <strong>ACE Handyman Services</strong>, your trusted partner for all your home and business repair and maintenance needs across South Wales and the Valleys.</p>
+            <p>With a commitment to quality and customer satisfaction, we offer a comprehensive range of handyman services tailored to meet your specific requirements. No job is too small or too big for our skilled and dedicated team.</p>
+        </div>
+    </div>
+
+    <div class="contact">
+        <div class="contact-content">
+            <h2>Ready to tackle your next project?</h2>
+            <p>Contact <strong>ACE Handyman Services</strong> today for a free quote and discover how we can help you maintain and improve your home or business.</p>
+            <br/>
+            <p><a href="mailto:ealex3095@gmail.com">Email Us</a></p>
+        </div>
+        <div class="contact-image">
+            <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/screws.jpeg" alt="Screws">
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/fulllogo_transparent_nobuffer.png" alt="ACE Handyman's logo" class="logo">
+        </div>
+        <div class="footer-contact">
+            <p><strong>Contact Us:</strong></p>
+            <ul>
+                <li>
+                    <p><a href="tel:07462559149">tel: 07462 559149</a></p>
+                </li>
+                <li>
+                    <p><a href="mailto:ealex3095@gmail.com">email: ealex3095@gmail.com</a></p>
+                </li>
+                <li>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/akgardensmaintenence" target="_blank">
+                            <img src="/Users/jordprc/Dev/ace-handyman-services/Ace Handyman/facebook.png" alt="Facebook logo">
+                            <span>ACE Handyman Services</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>© 2023 Website created by <strong>web-design.jpp.wales</strong>. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true, // Enable loop mode
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+</body>
+</html>
